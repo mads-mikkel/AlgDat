@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using AlgDat.Dotnet.CSharp.DataStructures;
 
 namespace AlgDat.Dotnet.Tests.CSharp
 {
@@ -8,7 +9,8 @@ namespace AlgDat.Dotnet.Tests.CSharp
         [Fact]
         public void CanAddSingleElement()
         {
-
+            // Arrange:
+            List list = new();
         }
     }
 }

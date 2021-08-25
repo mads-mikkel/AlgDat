@@ -22,9 +22,14 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
         protected int count;
 
         /// <summary>
+        /// The number of elements not yet utilized
+        /// </summary>
+        protected int EmptyCapacity => TotalCapacity - count;
+
+        /// <summary>
         /// The capacity of the internal array.
         /// </summary>
-        protected int capacity;
+        protected int TotalCapacity => array.Length;
 
         /// <summary>
         /// Initializes a new instance with the provided initial capacity.
@@ -35,7 +40,6 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
             if(initialCapacity < 1)
                 throw new ArgumentException("Initial length mnust be positive");
             array = new T[initialCapacity];
-            capacity = array.Length;
         }
 
         /// <summary>
@@ -47,6 +51,11 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
         /// Gets a value indicating whether or not this linear data structure is empty or not, i.e. contains one or more elements.
         /// </summary>
         public bool IsEmpty => count == 0;
+
+        /// <summary>
+        /// Gets a value indicating whether or not this linear data structure is full or not, i.e. all indices have an element.
+        /// </summary>
+        public bool IsFull => count == TotalCapacity;
 
         /// <summary>
         /// Gets a booolean value indicating whether or not the elements of the linear data structure can be sorted.
@@ -77,30 +86,20 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
         }
 
         /// <summary>
-        /// Checks whether the provided index is within the bound of the internal array. Throws <see cref="IndexOutOfRangeException"/> when the index is outside of the bounds.
-        /// </summary>
-        /// <param name="index">The index to determine whether or not is inside the bounds.</param>
-        /// <exception cref="IndexOutOfRangeException"/>
-        protected void ThrowOnIndexOutOfBounds(in int index)
-        {
-            if(!IndexInRange(index))
-                HandlePotentialOutOfBoundsIndexAccess(index);
-        }
-
-        /// <summary>
         /// Copies all values of the internal array 
         /// </summary>
         /// <param name="newArray"></param>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="InvalidOperationException">Thrown when the capacity of the new array is less than the capacity of the internal array.</exception>
-        protected virtual void CopyTo(T[] newArray)
+        protected void CopyTo(T[] newArray)
         {
             if(newArray is null)
                 throw new ArgumentNullException(nameof(newArray));
-            if(newArray.Length < capacity)
+            if(newArray.Length < count)
                 throw new InvalidOperationException("Cannot copy when all elements will not fit in new array.");
-            for(int i = 0; i < capacity; i++)
-                newArray[i] = array[i];
+            if(count > 0)
+                for(int i = 0; i < count; i++)
+                    newArray[i] = array[i];
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
             string message = $"Requested index was {index}.";
             if(index < 0)
                 ThrowIndexOutOfLowerBound(additionalMessage: message);
-            else if(index >= capacity)
+            else if(index >= TotalCapacity)
                 ThrowIndexOutOfUpperBound(additionalMessage: message);
         }
 
@@ -149,21 +148,37 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
         /// <remarks>
         /// The resizing discards all elements with indices > newLength - 1.
         /// </remarks>
-        /// <param name="newLength">The desired new length of the internal array.</param>
-        protected void ResizeTo(in int newLength)
+        /// <param name="newCapacity">The desired new length of the internal array.</param>
+        protected void ResizeTo(in int newCapacity)
         {
-            if(newLength == capacity) return;
-            T[] newArray = new T[newLength];
-            CopyTo(newArray);
-            array = newArray;
-            capacity = array.Length;
+            if(newCapacity < 0)
+                throw new ArgumentException("Provided new capacity cannot be negative.");
+            if(newCapacity == TotalCapacity)    // if equal size, nothing to resize.
+                return;
+            if(count > 0)
+            {
+                T[] newArray = new T[newCapacity];
+                CopyTo(newArray);
+                array = newArray;   // When TotalCapacity is invoked after this statement, the value will be correct.
+            }
         }
 
         /// <summary>
         /// Determines whether or not the provided index is within the bounds og the internal array.
         /// </summary>
         protected bool IndexInRange(in int index)
-            => index >= 0 && index < capacity;
+            => index >= 0 && index < TotalCapacity;
+
+        /// <summary>
+        /// Checks whether the provided index is within the bound of the internal array. Throws <see cref="IndexOutOfRangeException"/> when the index is outside of the bounds.
+        /// </summary>
+        /// <param name="index">The index to determine whether or not is inside the bounds.</param>
+        /// <exception cref="IndexOutOfRangeException"/>
+        protected void ThrowOnIndexOutOfBounds(in int index)
+        {
+            if(!IndexInRange(index))
+                HandlePotentialOutOfBoundsIndexAccess(index);
+        }
 
         protected static void ThrowIndexOutOfLowerBound(string additionalMessage = "")
         {

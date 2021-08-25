@@ -21,8 +21,8 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
         /// <param name="element">The element to add.</param>
         public void Add(T element)
         {
-            if(count == capacity)
-                ResizeTo(capacity + 16);
+            if(count == TotalCapacity)
+                ResizeTo(TotalCapacity + 4);
             Insert(element, count);
         }
 

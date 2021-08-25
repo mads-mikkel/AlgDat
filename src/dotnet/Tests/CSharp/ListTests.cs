@@ -20,9 +20,16 @@ namespace AlgDat.Dotnet.Tests.CSharp
         }
 
         [Fact]
-        public void Test()
-        {            
+        public void CanAddFirstElement()
+        {
+            // Arrange:
+            List<int> intList = new();
+            int element = 42;
+            // Act:
+            intList.Add(element);
 
+            // Arrange:
+            Assert.True(intList.Count == 1);
         }
     }
 }

@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>19</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>722</x>
+      <y>76</y>
+      <w>418</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+/INonLinearDataStructure&lt;T&gt;/
+--
+/+ Count : int &lt;&lt;property accessor&gt;&gt;/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>456</x>
+      <y>304</y>
+      <w>893</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+/IBinaryTree&lt;T&gt;/
+--
+/+ Root : BinaryTreeNode&lt;T&gt; &lt;&lt;property&gt;&gt;/
+/+ GetHeight(BinaryTreeNode&lt;T&gt; root) : int/
+/+ ToStringLevel(level : int, BinaryTreeNode&lt;T&gt; root) : string/
+/+ ToStringLevelOrder() : int/
+/+ AddLeftChildTo(BinaryTreeNode&lt;T&gt; parent, T leftChildItem) : void/
+/+ AddRightChildTo(BinaryTreeNode&lt;T&gt; parent, T rightChildItem) : void/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>475</x>
+      <y>703</y>
+      <w>893</w>
+      <h>361</h>
+    </coordinates>
+    <panel_attributes>BinaryTree&lt;T&gt;
+--
+- root : BinaryTreeNode&lt;T&gt;
+--
++ BinaryTree(root : BinaryTreeNode&lt;T&gt;)
++ Root : BinaryTreeNode&lt;T&gt; &lt;&lt;property&gt;&gt;
++ GetHeight(BinaryTreeNode&lt;T&gt; root) : int
++ GetCount() : int
++ ToStringLevel(level : int, BinaryTreeNode&lt;T&gt; root) : string
++ ToStringLevelOrder() : int
++ AddLeftChildTo(BinaryTreeNode&lt;T&gt; parent, T leftChildItem) : void
++ AddRightChildTo(BinaryTreeNode&lt;T&gt; parent, T rightChildItem) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1615</x>
+      <y>703</y>
+      <w>684</w>
+      <h>323</h>
+    </coordinates>
+    <panel_attributes>BinaryTreeNode&lt;T&gt;
+--
+- leftChild : BinaryTreeNode&lt;T&gt;
+- rightChild : BinaryTreeNode&lt;T&gt;
+--
++ BinaryTreeNode()
++ BinaryTreeNode(item : T)
++ AddLeftChild(item : T) : void
++ AddRightChild(item : T) : void
++ LeftChild : BinaryTreeNode&lt;T&gt; &lt;&lt;property accessor&gt;&gt;
++ RightChild : BinaryTreeNode&lt;T&gt; &lt;&lt;property accessor&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1672</x>
+      <y>323</y>
+      <w>551</w>
+      <h>266</h>
+    </coordinates>
+    <panel_attributes>TreeNode&lt;T&gt;
+--
+- parent : TreeNode&lt;T&gt;
+--
++ TreeNode()
++ TreeNode(item : T)
++ TreeNode(item : T, parent : TreeNode&lt;T&gt;)
++ TreeNode(parent : TreeNode&lt;T&gt;)
++ Parent : TreeNode&lt;T&gt; &lt;&lt;property&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1786</x>
+      <y>0</y>
+      <w>304</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>Node&lt;T&gt;
+--
+- item : T
+--
++ Node()
++ Node(item : T)
++ Item : T &lt;&lt;property&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1919</x>
+      <y>190</y>
+      <w>57</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1919</x>
+      <y>570</y>
+      <w>57</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>893</x>
+      <y>190</y>
+      <w>57</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1330</x>
+      <y>437</y>
+      <w>114</w>
+      <h>418</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0;40.0;200.0;20.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1007</x>
+      <y>1900</y>
+      <w>437</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+/INonLinearDataStructure&lt;T&gt;/
+--
+/+ Count : int &lt;&lt;property accessor&gt;&gt;/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1558</x>
+      <y>1862</y>
+      <w>304</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>Node&lt;T&gt;
+--
+- item : T
+--
++ Node()
++ Node(item : T)
++ Item : T &lt;&lt;property&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2052</x>
+      <y>1919</y>
+      <w>551</w>
+      <h>266</h>
+    </coordinates>
+    <panel_attributes>TreeNode&lt;T&gt;
+--
+- parent : TreeNode&lt;T&gt;
+--
++ TreeNode()
++ TreeNode(item : T)
++ TreeNode(item : T, parent : TreeNode&lt;T&gt;)
++ TreeNode(parent : TreeNode&lt;T&gt;)
++ Parent : TreeNode&lt;T&gt; &lt;&lt;property&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2299</x>
+      <y>1824</y>
+      <w>57</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2166</x>
+      <y>1786</y>
+      <w>304</w>
+      <h>57</h>
+    </coordinates>
+    <panel_attributes>Node&lt;T&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>3553</y>
+      <w>684</w>
+      <h>323</h>
+    </coordinates>
+    <panel_attributes>BinaryTreeNode&lt;T&gt;
+--
+- leftChild : BinaryTreeNode&lt;T&gt;
+- rightChild : BinaryTreeNode&lt;T&gt;
+--
++ BinaryTreeNode()
++ BinaryTreeNode(item : T)
++ AddLeftChild(item : T) : void
++ AddRightChild(item : T) : void
++ LeftChild : BinaryTreeNode&lt;T&gt; &lt;&lt;property accessor&gt;&gt;
++ RightChild : BinaryTreeNode&lt;T&gt; &lt;&lt;property accessor&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>3477</y>
+      <w>57</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>228</x>
+      <y>3439</y>
+      <w>209</w>
+      <h>57</h>
+    </coordinates>
+    <panel_attributes>TreeNode&lt;T&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>3363</y>
+      <w>57</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>228</x>
+      <y>3325</y>
+      <w>209</w>
+      <h>57</h>
+    </coordinates>
+    <panel_attributes>Node&lt;T&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>608</x>
+      <y>2166</y>
+      <w>418</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+/INonLinearDataStructure&lt;T&gt;/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>779</x>
+      <y>2242</y>
+      <w>57</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>342</x>
+      <y>2337</y>
+      <w>893</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+/IBinaryTree&lt;T&gt;/
+--
+/+ Root : BinaryTreeNode&lt;T&gt; &lt;&lt;property&gt;&gt;/
+/+ GetHeight(BinaryTreeNode&lt;T&gt; root) : int/
+/+ ToStringLevel(level : int, BinaryTreeNode&lt;T&gt; root) : string/
+/+ ToStringLevelOrder() : int/
+/+ AddLeftChildTo(BinaryTreeNode&lt;T&gt; parent, T leftChildItem) : void/
+/+ AddRightChildTo(BinaryTreeNode&lt;T&gt; parent, T rightChildItem) : void/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1216</x>
+      <y>2470</y>
+      <w>152</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;180.0;20.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>361</x>
+      <y>2698</y>
+      <w>893</w>
+      <h>361</h>
+    </coordinates>
+    <panel_attributes>BinaryTree&lt;T&gt;
+--
+# root : TreeNode&lt;T&gt;
+--
++ BinaryTree(root : BinaryTreeNode&lt;T&gt;)
++ Root : BinaryTreeNode&lt;T&gt; &lt;&lt;property&gt;&gt;
++ GetHeight(BinaryTreeNode&lt;T&gt; root) : int
++ GetCount() : int
++ ToStringLevel(level : int, BinaryTreeNode&lt;T&gt; root) : string
++ ToStringLevelOrder() : int
++ AddLeftChildTo(BinaryTreeNode&lt;T&gt; parent, T leftChildItem) : void
++ AddRightChildTo(BinaryTreeNode&lt;T&gt; parent, T rightChildItem) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1083</x>
+      <y>3401</y>
+      <w>570</w>
+      <h>418</h>
+    </coordinates>
+    <panel_attributes>HashTable&lt;Key, Value&gt;
+--
+- LOAD_FACTOR : double = 0.8
+- INCREASE_SIZE_FACTOR : double = 1.5
+- actualLoadFactor : double
+- elements : int
+- array : Value[ ]
+- loadFactorThresholdReached : bool
+--
++ HashTable(initialSize : int)
++ Add(key : Key, value : Value) : void
++ Lookup(key : Key) : Value
+- CalculateLoadFactor() : void
+- Hash(key : Key) : int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1995</x>
+      <y>2489</y>
+      <w>304</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>Node&lt;T&gt;
+--
+- item : T
+--
++ Node()
++ Node(item : T)
++ Item : T &lt;&lt;property&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2356</x>
+      <y>2926</y>
+      <w>589</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>Vertex&lt;T&gt;
+-
+# visited : bool
+# neighbours : List&lt; Vertex&lt;T&gt; &gt;
+-
++ Vertex(item : T)
++ AddNeighbour(neighbour : Vertex&lt;T&gt;) : void
++ HasNeighbour(neighbour : Vertex&lt;T&gt;) : bool </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1786</x>
+      <y>3192</y>
+      <w>589</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>Edge&lt;TEdge, TEdgeWeight&gt;
+-
+# source : Vertex&lt;TVertex&gt;
+# target : Vertex&lt;TVertex&gt;
+-
++ Edge(data : TEdge)</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

@@ -44,12 +44,48 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
         public int Count => count;
 
         /// <summary>
+        /// Gets a value indicating whether or not this linear data structure is empty or not, i.e. contains one or more elements.
+        /// </summary>
+        public bool IsEmpty => count == 0;
+
+        /// <summary>
         /// Gets a booolean value indicating whether or not the elements of the linear data structure can be sorted.
         /// </summary>
         /// <remarks>
         /// The elements are sortable by this determination, when the elements of type <see cref="{T}"/> implements <see cref="IComparable{T}"/>.
         /// </remarks>
         public virtual bool IsSortable => typeof(IComparable<T>).IsAssignableFrom(typeof(T));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException"/>
+        public T this[int index]
+        {
+            get
+            {
+                ThrowOnIndexOutOfBounds(index);
+                return array[index];
+            }
+            set
+            {
+                ThrowOnIndexOutOfBounds(index);
+                Insert(value, index);
+            }
+        }
+
+        /// <summary>
+        /// Checks whether the provided index is within the bound of the internal array. Throws <see cref="IndexOutOfRangeException"/> when the index is outside of the bounds.
+        /// </summary>
+        /// <param name="index">The index to determine whether or not is inside the bounds.</param>
+        /// <exception cref="IndexOutOfRangeException"/>
+        protected void ThrowOnIndexOutOfBounds(in int index)
+        {
+            if(!IndexInRange(index))
+                HandlePotentialOutOfBoundsIndexAccess(index);
+        }
 
         /// <summary>
         /// Copies all values of the internal array 
@@ -71,6 +107,7 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
         /// Throws an exception when the provided index is out of bounds of the internal array.
         /// </summary>
         /// <param name="index"></param>
+        /// <exception cref="IndexOutOfRangeException"/>
         protected virtual void HandlePotentialOutOfBoundsIndexAccess(in int index)
         {
             string message = $"Requested index was {index}.";
@@ -95,7 +132,7 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
         }
 
         /// <summary>
-        /// Removes the element at the prvided index from the internal array.
+        /// Removes the element at the provided index from the internal array.
         /// </summary>
         /// <exception cref="IndexOutOfRangeException"/>
         protected void Remove(in int index)

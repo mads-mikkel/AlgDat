@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AlgDat.Dotnet.CSharp.DataStructures;
 
-namespace CSharp.Algorithms
+namespace AlgDat.Dotnet.CSharp.Algorithms
 {
-    class Sorter
+    public class Sorter
     {
+        public void Sort<T>(List<T> list) where T : IComparable<T>
+        {
+           
+        }
     }
 }

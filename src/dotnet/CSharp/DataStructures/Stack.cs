@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharp.DataStructures
+namespace AlgDat.Dotnet.CSharp.DataStructures
 {
-    public class Stack
-    {
-    }
+    //public class Stack<T>:LinearDataStructure<T>
+    //{        
+
+    //}
 }

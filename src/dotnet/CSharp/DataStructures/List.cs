@@ -11,7 +11,7 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
 
         public void Add(T element)
         {
-            
+            base.Insert(element, 98);
         }
     }
 }

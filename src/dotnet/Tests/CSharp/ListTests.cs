@@ -7,10 +7,22 @@ namespace AlgDat.Dotnet.Tests.CSharp
     public class ListTests
     {
         [Fact]
-        public void CanAddSingleElement()
+        public void IComparableIsSortable()
         {
             // Arrange:
-            List list = new();
+            List<int> intList = new();
+
+            // Act:
+            bool isSortable = intList.IsSortable;
+
+            // Arrange:
+            Assert.True(isSortable);
+        }
+
+        [Fact]
+        public void Test()
+        {            
+
         }
     }
 }

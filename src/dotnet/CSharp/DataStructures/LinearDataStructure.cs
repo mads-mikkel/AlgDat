@@ -11,20 +11,25 @@ namespace AlgDat.Dotnet.CSharp.DataStructures
         protected LinearDataStructure(in int initialLength)
         {
             if(initialLength < 1)
-                throw new ArgumentException("initial length mnust be positive");
+                throw new ArgumentException("Initial length mnust be positive");
             array = new T[initialLength];
         }
 
-        protected virtual void Insert(T element, int index)
-        {
-            // Don't check T, just allow nulls.
-            if(index < 0)
+        protected void Insert(in T element, in int index)
+        {            
+            if(index < 0)   // Don't check T, just allow nulls.
                 throw new IndexOutOfRangeException("Requested index was outside the negative bound.");
             if(index > length)
                 throw new IndexOutOfRangeException("Requested index was outside the positive bound.");
             array[index] = element;
+            count++;
         }
 
-        public virtual bool IsSortable => typeof(T) is IComparable<T>;
+        protected void Remove(in int index)
+        {
+
+        }
+
+        public virtual bool IsSortable => typeof(IComparable<T>).IsAssignableFrom(typeof(T));
     }
 }

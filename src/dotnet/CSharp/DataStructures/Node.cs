@@ -175,10 +175,9 @@ namespace CSharp.DataStructures
             set => base[(int)index] = value;
         }
 
-        public virtual bool ValueExistsFor(TKey key)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual bool ValueExistsFor(TKey key) =>
+            this[Hash(key)] is not null;
+
 
         public virtual bool Contains(TValue value)
         {

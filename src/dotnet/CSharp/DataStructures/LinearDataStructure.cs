@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlgDat.Dotnet.CSharp.DataStructures
+namespace CSharp.DataStructures
 {
     /// <summary>
     /// Abstract base class for all linear data structures.

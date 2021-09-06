@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlgDat.Dotnet.CSharp.DataStructures
+namespace CSharp.DataStructures
 {
     public class Stack<T>: LinearDataStructure<T>
     {

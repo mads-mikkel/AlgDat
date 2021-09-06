@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using AlgDat.Dotnet.CSharp.DataStructures;
+using CSharp.DataStructures;
 
 namespace AlgDat.Dotnet.Tests.CSharp
 {
@@ -47,6 +47,14 @@ namespace AlgDat.Dotnet.Tests.CSharp
 
             // Arrange:
             Assert.True(intList.IsEmpty);
+        }
+
+        [Fact]
+        public void LLtest()
+        {
+            LinkedList<int> linkedList = new();
+            linkedList.Add(45);
+            linkedList.Add(100);
         }
     }
 }

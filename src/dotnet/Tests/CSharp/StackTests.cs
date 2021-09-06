@@ -1,6 +1,6 @@
 ﻿using System;
 using Xunit;
-using AlgDat.Dotnet.CSharp.DataStructures;
+using CSharp.DataStructures;
 
 namespace AlgDat.Dotnet.Tests.CSharp
 {

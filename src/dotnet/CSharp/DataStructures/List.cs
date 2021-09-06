@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlgDat.Dotnet.CSharp.DataStructures
+namespace CSharp.DataStructures
 {
     /// <summary>
     /// Represents the List data structure.

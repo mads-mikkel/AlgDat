@@ -56,13 +56,13 @@ namespace CSharp.DataStructures
         }
     }
 
-    public interface INonLinearDataStructure<T>
+    public interface IDataStructure<T>
     {
         int Count { get; }
         bool IsEmpty => Count == 0; // C# 9 default interface implementation. Runtime support only for .NET 5+.
     }
 
-    public interface ITree<T>: INonLinearDataStructure<T>
+    public interface ITree<T>: IDataStructure<T>
     {
         TreeNode<T> Root { get; }
     }
@@ -76,9 +76,8 @@ namespace CSharp.DataStructures
         string ToStringLevelOrder();
     }
 
-    public abstract class Tree<T>
+    public abstract class Tree<T>: DataStructure<T>
     {
-        protected int count;
         private TreeNode<T> root;
 
         public Tree(TreeNode<T> root)
@@ -87,7 +86,6 @@ namespace CSharp.DataStructures
             count++;
         }
 
-        public int Count => count;
         public TreeNode<T> Root { get => root; private set => root = value; }
     }
 
@@ -120,6 +118,108 @@ namespace CSharp.DataStructures
         public string ToStringLevelOrder()
         {
             throw new System.NotImplementedException();
+        }
+    }
+
+    public abstract class DataStructure<T>: IDataStructure<T>
+    {
+        private protected int count;
+
+        public int Count => count;
+    }
+
+    public class LinkedList<T>
+    {
+        public LinkedListNode<T> Head { get; private set; }
+
+        public void Add(T item)
+        {
+            if(Head is null)
+            {
+                Head = new LinkedListNode
+                    <T>()
+                { Item = item };
+                //count++;
+            }
+            else
+            {
+                // iterere indtil Next er null, og derefter lave en ny node og assigne den sidste node's Next property.
+            }
+        }
+    }
+
+    public class HashTable<TKey, TValue>: LinearDataStructure<TValue>
+    {
+        private const double LoadFactor = 0.8, IncreaseSizeFactor = 1.5;
+        private double actualLoadFactor;
+        private bool loadFactorThresholdReached;
+
+        public HashTable() : base(1000)
+        {
+        }
+
+        public virtual void Add((TKey key, TValue value) kvPair)
+        {
+            // Calculate hascode of key;
+            uint index = Hash(kvPair.key);
+            if(index >= TotalCapacity)
+                ResizeTo((int)index);
+            this[(int)index] = kvPair.value;
+        }
+
+        public virtual int IndexOf(TKey key) => (int)Hash(key);
+
+        public TValue this[uint index]
+        {
+            get => base[(int)index];
+            set => base[(int)index] = value;
+        }
+
+        public virtual bool ValueExistsFor(TKey key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual bool Contains(TValue value)
+        {
+            if(IsEmpty || value is null)
+                return false;
+            else
+            {
+                for(int i = 0; i < TotalCapacity - 1; i++)
+                    if(value.Equals(this[i]))
+                        return true;
+                return false;
+            }
+        }
+
+        protected virtual uint Hash(TKey key)
+        {
+            int objectHashCode = key.GetHashCode();
+            int mask = objectHashCode >> 31;
+            objectHashCode ^= mask;
+            objectHashCode -= mask;
+            objectHashCode %= TotalCapacity;
+            uint hashCode = (uint)objectHashCode;
+            return hashCode;
+        }
+
+        protected void CalculateLoadFactor()
+        {
+
+        }
+
+        public override string ToString()
+        {
+            string output = "";
+            for(int i = 0; i < TotalCapacity; i++)
+            {
+                if(this[i] is not null)
+                {
+                    output += $"i: {i} |Value: {this[i]}";
+                }
+            }
+            return output;
         }
     }
 

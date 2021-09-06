@@ -151,19 +151,25 @@ namespace CSharp.DataStructures
     public class HashTable<TKey, TValue>: LinearDataStructure<TValue>
     {
         private const double LoadFactor = 0.8, IncreaseSizeFactor = 1.5;
-        private double actualLoadFactor;
-        private bool loadFactorThresholdReached;
+        private int collisions;
 
-        public HashTable() : base(1000)
-        {
-        }
+        public HashTable(in int initialCapacity) : base(initialCapacity) { }
 
         public virtual void Add((TKey key, TValue value) kvPair)
         {
-            // Calculate hascode of key;
+            // TODO: do not allow defaults.
+
+            // Calculate hascode of key:
             uint index = Hash(kvPair.key);
-            if(index >= TotalCapacity)
-                ResizeTo((int)index);
+
+            // Do we need a bigger hash table?
+            if(CalculateLoadFactor() > LoadFactor)
+                ResizeTo((int)(TotalCapacity * IncreaseSizeFactor));
+
+            if(!System.Collections.Generic.EqualityComparer<TValue>.Default.Equals(this[index], default(TValue)))
+                collisions++;
+
+            // Insert value at the calculated index:
             this[(int)index] = kvPair.value;
         }
 
@@ -203,21 +209,22 @@ namespace CSharp.DataStructures
             return hashCode;
         }
 
-        protected void CalculateLoadFactor()
+        protected double CalculateLoadFactor()
         {
-
+            double currentLoadFactor = Count / (double)TotalCapacity;
+            if(currentLoadFactor < 0)
+                throw new InvalidProgramException($"Load factor unexpectedly became negative:{Environment.NewLine}Total capacity: {TotalCapacity}, Count {Count}, Calculated load factor: {currentLoadFactor}");
+            else return currentLoadFactor;
         }
 
         public override string ToString()
         {
-            string output = "";
-            for(int i = 0; i < TotalCapacity; i++)
-            {
-                if(this[i] is not null)
-                {
-                    output += $"i: {i} |Value: {this[i]}";
-                }
-            }
+            string output = base.ToString();
+            output += $"Collisions: {collisions}{Environment.NewLine}";
+            //string output = $"{nameof(Count)}: {count}, {nameof(TotalCapacity)}: {TotalCapacity}{Environment.NewLine}";
+            //for(int i = 0; i < TotalCapacity; i++)
+            //    if(!this[i].Equals(default(TValue)))
+            //        output += $"i: {i} |Value: {this[i]}{Environment.NewLine}";
             return output;
         }
     }

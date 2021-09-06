@@ -22,6 +22,17 @@ namespace CSharp.DataStructures
         protected int count;
 
         /// <summary>
+        /// Initializes a new instance with the provided initial capacity.
+        /// </summary>
+        /// <param name="initialCapacity"></param>
+        protected LinearDataStructure(in int initialCapacity)
+        {
+            if(initialCapacity < 1)
+                throw new ArgumentOutOfRangeException("Initial length mnust be positive");
+            array = new T[initialCapacity];
+        }
+
+        /// <summary>
         /// The number of elements not yet utilized
         /// </summary>
         protected int EmptyCapacity => TotalCapacity - count;
@@ -29,18 +40,7 @@ namespace CSharp.DataStructures
         /// <summary>
         /// The capacity of the internal array.
         /// </summary>
-        protected int TotalCapacity => array.Length;
-
-        /// <summary>
-        /// Initializes a new instance with the provided initial capacity.
-        /// </summary>
-        /// <param name="initialCapacity"></param>
-        protected LinearDataStructure(in int initialCapacity)
-        {
-            if(initialCapacity < 1)
-                throw new ArgumentException("Initial length mnust be positive");
-            array = new T[initialCapacity];
-        }
+        protected int TotalCapacity => array.Length;        
 
         /// <summary>
         /// Gets the current number of elements in the linear data structure.
@@ -192,6 +192,18 @@ namespace CSharp.DataStructures
             const string outOfUpper = "Index was outside upper bound.";
             string message = $"{outOfUpper}{(additionalMessage != "" ? $" {additionalMessage}" : String.Empty)}";
             throw new IndexOutOfRangeException(message);
+        }
+
+        public override string ToString()
+            => $"Count: {count}, Total Capacity: {TotalCapacity} ({array.Length}), Empty Capacity: {EmptyCapacity}, Is Sortable: {IsSortable}, Is Empty: {IsEmpty}, Is Full: {IsFull}{Environment.NewLine}";
+
+
+        public virtual string ToVerboseString()
+        {
+            string output = ToString();
+            for(int i = 0; i < array.Length; i++)
+                output += $"i: {i}, value: {array[i]}{Environment.NewLine}";
+            return output;
         }
     }
 }
